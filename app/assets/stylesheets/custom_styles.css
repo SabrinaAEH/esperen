@@ -16,6 +16,10 @@
     border-color: #ecaefa; /* Couleur de la bordure au survol */
 }
 
+.btn-danger {
+    color: black !important ;
+}
+
 .btn {
     color: #a8a8a6;
     display: inline-block;
@@ -42,6 +46,13 @@ p, lead, blockquote, .form-check, .list-group-item, .navbar .navbar-nav .nav-lin
 }
 
 blockquote {
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    font-style: italic;
+}  
+
+i {
+    color: #a8a8a6;
     font-family: 'Barlow', sans-serif;
     font-weight: 300;
     font-style: italic;

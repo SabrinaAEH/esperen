@@ -59,8 +59,12 @@
               Mon Compte
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <% if user_signed_in? %>
+              <li><%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, data: {turbo_method: :delete}, class: "dropdown-item" %></li>
+              <% else %>
               <li><a class="dropdown-item" href="/users/sign_up">S'inscrire</a></li>
               <li><a class="dropdown-item" href="/users/sign_in">Se connecter</a></li>
+              <% end %>
             </ul>
           </li>
         </ul>
