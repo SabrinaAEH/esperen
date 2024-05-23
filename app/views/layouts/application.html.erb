@@ -6,8 +6,12 @@
   <!-- Inclusion des polices -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link href="https://db.onlinewebfonts.com/c/49ded67c36cc1c2fe20918442aa23902?family=Rondal+Regular" rel="stylesheet">
+  <!-- Inclusion d'OpenDyslexic -->
+  <link href="https://db.onlinewebfonts.com/c/66a105c2c6d3ca4bf2c6fa8b8e0df1bf?family=OpenDyslexic-Regular" rel="stylesheet">
+  <!-- Favicon -->
+  <%= favicon_link_tag asset_path('logoEsperen.png') %>
 
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
@@ -21,10 +25,6 @@
   <%= stylesheet_link_tag 'custom_styles', 'data-turbo-track': 'reload' %>
 
 </head>
-
-
-<!-- !!Penser à ajouter les flashs alertes!! -->
-
 
 <body class="d-flex flex-column min-vh-100">
 <header>
@@ -69,6 +69,7 @@
           </li>
         </ul>
       </div>
+      <button id="toggle-dyslexia" class="btn btn-secondary">Activer OpenDyslexic</button>
     </div>
   </nav>
 </header>
@@ -99,5 +100,20 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <!-- Inclusion du script JavaScript de Font Awesome pour les icônes réseaux sociaux -->
 <script src="https://kit.fontawesome.com/622df1b05f.js" crossorigin="anonymous"></script>
+<!-- Inclusion du script OpenDyslexic -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const button = document.getElementById('toggle-dyslexia');
+    button.addEventListener('click', function() {
+        document.body.classList.toggle('dyslexia-mode');
+        if (document.body.classList.contains('dyslexia-mode')) {
+            button.textContent = 'Désactiver OpenDyslexic';
+        } else {
+            button.textContent = 'Activer OpenDyslexic';
+        }
+        console.log('Dyslexia mode toggled:', document.body.classList.contains('dyslexia-mode'));
+    });
+});
+</script>
 </body>
 </html>

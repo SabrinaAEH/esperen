@@ -58,6 +58,10 @@ i {
     font-style: italic;
 }
 
+.dyslexia-mode {
+    font-family: "OpenDyslexic-Regular" !important;
+}
+
 /* Styles des formulaires */
 .form-control {
     width: 70%;
