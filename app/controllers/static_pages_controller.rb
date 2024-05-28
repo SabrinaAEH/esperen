@@ -5,9 +5,6 @@ class StaticPagesController < ApplicationController
   def show
   end
 
-  def eshop
-  end
-
   def prestations
   end
 

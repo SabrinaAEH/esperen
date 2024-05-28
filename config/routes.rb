@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get 'static_pages/about', to: 'static_pages#about', as: 'static_pages_about'
   get 'static_pages/team', to: 'static_pages#team', as: 'static_pages_team'
   get 'static_pages/contact', to: 'static_pages#contact', as: 'static_pages_contact'
+  get 'eshop/eshop_index', to: 'eshop#eshop_index', as: 'eshop_index'
+  get 'eshop/item/:id', to: 'eshop#show', as: 'eshop_item'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

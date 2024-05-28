@@ -3,6 +3,8 @@
 <head>
   <title>EsperenWebsite</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <!-- Bootstrap icons-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
   <!-- Inclusion des polices -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,7 +54,7 @@
             <a class="nav-link" href="/static_pages/contact">Infos & Contact</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/static_pages/eshop">EShop</a>
+            <a class="nav-link" href="/eshop/eshop_index">EShop</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -69,6 +71,13 @@
           </li>
         </ul>
       </div>
+      <form class="d-flex">
+          <button class="btn btn-outline-dark text-white" type="submit">
+            <i class="bi-cart-fill me-1"></i>
+              Panier
+            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+          </button>
+        </form>
       <button id="toggle-dyslexia" class="btn btn-secondary">Activer OpenDyslexic</button>
     </div>
   </nav>

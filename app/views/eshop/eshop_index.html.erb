@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <style> 
+        .background-light-grey {
+        background-color: rgba(211, 211, 211, 0.8); /* Light grey with some transparency */
+        padding: 20px;
+        border-radius: 10px;
+        }
+
+        </style>
+    </head>
+    <body>
+        <!-- Header-->
+        <header class="bg-dark py-5"style="background-image: url('<%= asset_path('banniere_eshop.jpg') %>'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+             <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-dark background-light-grey"">
+                    <h1 class="display-4 fw-bolder">Boutique Esperen</h1>
+                    <p class="lead fw-normal text-dark-50 mb-0">Accessoires textiles confectionnés à l'atelier par nos couturièr⸱e⸱s</p>
+                </div>
+            </div>
+        </header>
+        <!-- Section-->
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    <% @items.each do |item| %>
+                    <div class="col mb-5">
+                    <div class="card h-100">
+                    <% if item.title == "Hello Camo" || item.title == "Yellow Wax Banana" %>
+                        <!-- Sale badge-->
+                        <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Best Seller</div>
+                    <% end %>
+                     <!-- Product image-->
+                    <img class="card-img-top" src="<%= asset_path(item.image_url) %>" alt="<%= item.title %>" />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                    <div class="text-center">
+                    <!-- Product name-->
+                    <h5 class="fw-bolder"><%= item.title %></h5>
+                    <!-- Product description-->
+                    <p><%= item.description %></p>
+                     <!-- Product reviews (example, adjust as necessary)-->
+                    <% if item.title == "Hello Camo" || item.title == "Yellow Wax Banana" %>
+                    <div class="d-flex justify-content-center small text-warning mb-2">
+                    <div class="bi-star-fill"></div>
+                    <div class="bi-star-fill"></div>
+                    <div class="bi-star-fill"></div>
+                    <div class="bi-star-fill"></div>
+                    <div class="bi-star-fill"></div>
+                  </div>
+                <% end %>
+                <!-- Product price-->
+                <%= number_to_currency(item.price, unit: "€", format: "%n %u") %>
+              </div>
+            </div>
+            <!-- Product actions-->
+            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+              <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="<%= eshop_item_path(item) %>">Voir en détails</a></div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

@@ -35,31 +35,25 @@
 }
 
 /* Styles des éléments de texte */
+.dyslexia-mode > * {
+    font-family: "OpenDyslexic-Regular" !important;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: "Rondal Regular";
 }
 
-p, lead, blockquote, .form-check, .list-group-item, .navbar .navbar-nav .nav-link, .card, .footer {
+p, lead, .form-check, .list-group-item, .navbar .navbar-nav .nav-link, .card, .footer {
     font-family: 'Barlow', sans-serif;
     font-weight: 400;
     font-style: normal;
 }
-
-blockquote {
-    font-family: 'Barlow', sans-serif;
-    font-weight: 300;
-    font-style: italic;
-}  
 
 i {
     color: #a8a8a6;
     font-family: 'Barlow', sans-serif;
     font-weight: 300;
     font-style: italic;
-}
-
-.dyslexia-mode {
-    font-family: "OpenDyslexic-Regular" !important;
 }
 
 /* Styles des formulaires */
@@ -118,6 +112,10 @@ i {
 
 .navbar {
     background-color: #1a031C;
+}
+
+.nav-link{
+    color: #f9deff;
 }
 
 /* Footer */
