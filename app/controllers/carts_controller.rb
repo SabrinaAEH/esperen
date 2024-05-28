@@ -3,6 +3,8 @@ class CartsController < ApplicationController
 
   def show
     @cart = current_user.cart
+    @cart_items = current_user.cart.cart_items
+    @total_price = @cart_items.sum { |cart_item| cart_item.item.price * cart_item.quantity }
   end
 
   def update_quantity
