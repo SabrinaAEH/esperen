@@ -20,10 +20,11 @@
           <p class="lead"><%= @item.description %></p>
           <div class="d-flex">
             <input class="form-control text-center me-3" id="inputQuantity" type="number" value="1" min="1" style="max-width: 3rem" />
-            <button class="btn btn-outline-dark flex-shrink-0" type="button">
-              <i class="bi-cart-fill me-1"></i>
-              Ajouter au panier
-            </button>
+             <% if user_signed_in? %>
+              <%= button_to 'Ajouter au panier', add_to_cart_item_path(@item), method: :post, remote: true, class: 'btn btn-outline-dark flex-shrink-0' %>
+            <% else %>
+              <%= link_to 'Se connecter pour ajouter au panier', new_user_session_path, class: 'btn btn-outline-dark flex-shrink-0' %>
+            <% end %>
           </div>
         </div>
       </div>

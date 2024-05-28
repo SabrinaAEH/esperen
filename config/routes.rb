@@ -10,6 +10,17 @@ Rails.application.routes.draw do
   get 'eshop/eshop_index', to: 'eshop#eshop_index', as: 'eshop_index'
   get 'eshop/item/:id', to: 'eshop#show', as: 'eshop_item'
 
+  resources :items, only: [:show] do
+    post 'add_to_cart', on: :member
+  end
+
+  resource :cart, only: [:show] do
+    patch 'update_quantity/:id', to: 'carts#update_quantity', as: 'update_quantity'
+    delete 'cart_items/:id', to: 'carts#destroy_item', as: 'destroy_item'
+  end
+
+
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

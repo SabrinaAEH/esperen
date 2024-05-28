@@ -43,7 +43,7 @@ ESPEREN_WEBSITE is a Rails application for managing the website of the associati
 - developement:  
   Once the server is running, you can access the application in your browser by visiting http://localhost:3000.
 - production:  
-  You can visit the website with heroku: ///////////
+  You can visit the website with fly.io: ///////////
 
 ## Key Features
 
