@@ -68,7 +68,9 @@
       </div>
       <!-- Ajout du bouton "Payer" -->
       <div class="text-end ms-auto">
-        <button class="btn btn-secondary">Procéder au paiment</button>
+        <%= form_with url: orders_path, method: :post do %>
+          <%= submit_tag "Passer commande", class: "btn btn-secondary" %>
+        <% end %>
       </div>
     </div>
   </section>

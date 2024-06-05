@@ -79,6 +79,6 @@ test:
 #
 production:
   <<: *default
-  database: esperen_website_production
-  username: esperen_website
-  password: <%= ENV["ESPEREN_WEBSITE_DATABASE_PASSWORD"] %>
+  database: esperen
+  username: postgres
+  password: <%= ENV["ESPEREN_DATABASE_PASSWORD"] %>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+  <section class="h-100 order-page">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12">
+          <h1 class="fw-bold mb-0 text-black">Commande</h1>
+          <h6 class="mb-0 text-muted">Commande n° <%= @order.id %></h6>
+          <hr class="my-4">
+
+          <!-- Loop through order items -->
+          <% @order.order_items.each do |order_item| %>
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="row g-0">
+                  <div class="col-md-2 col-lg-2 col-xl-2">
+                    <img src="<%= order_item.item.image_url %>" class="img-fluid rounded-3" alt="<%= order_item.item.title %>">
+                  </div>
+                  <div class="col-md-3 col-lg-3 col-xl-3">
+                    <h6 class="text-black mb-0"><%= order_item.item.title %></h6>
+                  </div>
+                  <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                    <h6 class="mb-0">Quantité: <%= order_item.quantity %></h6>
+                  </div>
+                  <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                    <h6 class="mb-0">€ <%= order_item.unit_price %></h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <!-- End of loop -->
+
+          <hr class="my-4">
+          <div class="pt-5">
+            <h6 class="mb-0">
+              <%= link_to eshop_index_path, class: "text-body" do %>
+                <i class="fas fa-long-arrow-alt-left me-2"></i>
+                Retour à la boutique
+              <% end %>
+            </h6>
+          </div>
+        </div>
+      </div>
+      <!-- Afficher le montant total de la commande -->
+      <div class="card ms-auto" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Total de la commande</h5>
+          <p class="card-text">€ <%= @order.total_price %></p>
+        </div>
+      </div>
+        <div class="text-end ms-auto">
+              <%= button_to "Procéder au paiement", checkout_create_path(total: @total_price), class: "btn btn-secondary", data: {turbo: false} %>
+        </div>
+    </div>
+  </section>
+</body>
+</html>

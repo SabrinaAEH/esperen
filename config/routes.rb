@@ -19,6 +19,13 @@ Rails.application.routes.draw do
     delete 'cart_items/:id', to: 'carts#destroy_item', as: 'destroy_item'
   end
 
+  resources :orders, only: [:create, :show]
+
+  scope '/checkout' do
+    post 'create', to: 'checkout#create', as: 'checkout_create'
+    get 'success', to: 'checkout#success', as: 'checkout_success'
+    get 'cancel', to: 'checkout#cancel', as: 'checkout_cancel'
+  end
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

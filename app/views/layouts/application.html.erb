@@ -25,7 +25,9 @@
 
   <!-- Inclusion du fichier CSS personnalisé -->
   <%= stylesheet_link_tag 'custom_styles', 'data-turbo-track': 'reload' %>
-  
+
+  <!-- Script Stripe -->
+  <script src="https://js.stripe.com/v3/"></script>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -71,7 +73,7 @@
           </li>
         </ul>
       </div>
-        <% if user_signed_in? %>
+        <% if user_signed_in?  && current_user.cart %>
         <!-- Utilise un lien pour rediriger vers la page du panier -->
         <div class="d-flex align-items-center">
         <%= link_to cart_path, class: "btn btn-outline-dark text-white" do %>
@@ -82,6 +84,7 @@
         <div id="cart-count" class="badge bg-dark me-3"><%= current_user.cart.cart_items.count %></div>
         </div>
         <% end %>
+        
       <button id="toggle-dyslexia" class="btn btn-secondary">Activer OpenDyslexic</button>
     </div>
   </nav>
