@@ -1,0 +1,12 @@
+<%= turbo_stream.replace "cart_item_#{@cart_item.id}" do %>
+  <%= render @cart_item %>
+<% end %>
+
+<%= turbo_stream.replace "cart_total" do %>
+  <div class="card ms-auto" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Total du panier</h5>
+      <p class="card-text">€ <%= @total_price %></p>
+    </div>
+  </div>
+<% end %>

@@ -9,10 +9,16 @@ class CartsController < ApplicationController
 
   def update_quantity
     @cart_item = current_user.cart.cart_items.find(params[:id])
-    @cart_item.update(quantity: params[:quantity])
-    respond_to do |format|
-      format.html { redirect_to cart_path, notice: 'Quantité mise à jour.' }
-      format.js
+    if @cart_item.update(quantity: params[:cart_item][:quantity])
+      @total_price = current_user.cart.cart_items.sum { |cart_item| cart_item.item.price * cart_item.quantity }
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to cart_path, notice: 'Quantité mise à jour.' }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to cart_path, alert: 'Erreur de mise à jour.' }
+      end
     end
   end
 

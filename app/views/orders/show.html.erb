@@ -52,8 +52,9 @@
           <p class="card-text">€ <%= @order.total_price %></p>
         </div>
       </div>
+      <!-- Bouton paiement Stripe -->
         <div class="text-end ms-auto">
-              <%= button_to "Procéder au paiement", checkout_create_path(total: @total_price), class: "btn btn-secondary", data: {turbo: false} %>
+          <%= button_to "Procéder au paiement", checkout_create_path(total_price: @order.total_price), class: "btn btn-secondary", data: { turbo: false } %>
         </div>
     </div>
   </section>

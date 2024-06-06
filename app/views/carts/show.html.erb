@@ -25,15 +25,15 @@
                       <h6 class="text-black mb-0"><%= cart_item.item.title %></h6>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                      <button data-mdb-button-init data-mdb-ripple-init class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                        <i class="fas fa-minus"></i>
-                      </button>
-
-                      <input id="form1" min="0" name="quantity" value="<%= cart_item.quantity %>" type="number" class="form-control form-control-sm" />
-
-                      <button data-mdb-button-init data-mdb-ripple-init class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                        <i class="fas fa-plus"></i>
-                      </button>
+                      <%= form_with model: cart_item, url: update_quantity_cart_path(cart_item), method: :put, local: false do |f| %>
+                        <button type="button" class="btn btn-link px-2" onclick="updateQuantity(<%= cart_item.id %>, 'decrement')">
+                          <i class="fas fa-minus"></i>
+                        </button>
+                        <%= f.number_field :quantity, min: 0, class: "form-control form-control-sm", value: cart_item.quantity, onchange: "this.form.submit();" %>
+                        <button type="button" class="btn btn-link px-2" onclick="updateQuantity(<%= cart_item.id %>, 'increment')">
+                          <i class="fas fa-plus"></i>
+                        </button>
+                      <% end %>
                     </div>
                     <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
                       <h6 class="mb-0">€ <%= cart_item.item.price %></h6>
@@ -49,30 +49,37 @@
           <!-- End of loop -->
 
           <hr class="my-4">
-          <div class="pt-5">
-            <h6 class="mb-0">
-              <%= link_to eshop_index_path, class: "text-body" do %>
-                <i class="fas fa-long-arrow-alt-left me-2"></i>
-                Retour à la boutique
-              <% end %>
-            </h6>
+          <!-- Affichage du montant total du panier -->
+          <turbo-frame id="cart_total">
+            <div class="card ms-auto" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">Total du panier</h5>
+                <p class="card-text">€ <%= @total_price %></p>
+              </div>
+            </div>
+          </turbo-frame>
+
+          <!-- Ajout du bouton "Passer commande" -->
+          <div class="text-end ms-auto">
+            <%= form_with url: orders_path, method: :post do %>
+              <%= submit_tag "Passer commande", class: "btn btn-secondary" %>
+            <% end %>
           </div>
         </div>
       </div>
-      <!-- Ajout de la div pour afficher le montant total du panier -->
-      <div class="card ms-auto" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title">Total du panier</h5>
-          <p class="card-text">€ <%= @total_price %></p>
-        </div>
-      </div>
-      <!-- Ajout du bouton "Payer" -->
-      <div class="text-end ms-auto">
-        <%= form_with url: orders_path, method: :post do %>
-          <%= submit_tag "Passer commande", class: "btn btn-secondary" %>
-        <% end %>
-      </div>
     </div>
   </section>
+
+  <script>
+    function updateQuantity(cartItemId, action) {
+      const input = document.querySelector(`#cart_item_${cartItemId} input[type='number']`);
+      if (action === 'increment') {
+        input.stepUp();
+      } else if (action === 'decrement') {
+        input.stepDown();
+      }
+      input.dispatchEvent(new Event('change'));
+    }
+  </script>
 </body>
 </html>

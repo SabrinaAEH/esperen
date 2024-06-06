@@ -15,8 +15,10 @@ Rails.application.routes.draw do
   end
 
   resource :cart, only: [:show] do
-    patch 'update_quantity/:id', to: 'carts#update_quantity', as: 'update_quantity'
-    delete 'cart_items/:id', to: 'carts#destroy_item', as: 'destroy_item'
+    member do
+      put 'update_quantity/:id', to: 'carts#update_quantity', as: 'update_quantity'
+      delete 'destroy_item/:id', to: 'carts#destroy_item', as: 'destroy_item'
+    end
   end
 
   resources :orders, only: [:create, :show]
