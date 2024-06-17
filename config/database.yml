@@ -78,7 +78,10 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  database: esperen
-  username: postgres
-  password: <%= ENV["ESPEREN_DATABASE_PASSWORD"] %>
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  database: <%= ENV['ESPEREN_DATABASE_NAME'] %>
+  password: <%= ENV['ESPEREN_DATABASE_PASSWORD'] %>
+  host: <%= ENV['ESPEREN_DATABASE_HOST'] %>
+  port: 5432

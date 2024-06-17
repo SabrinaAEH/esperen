@@ -6,4 +6,9 @@ module ApplicationHelper
   def cart_total_amount
     current_user.cart.cart_items.sum { |cart_item| cart_item.item.price }
   end
+
+  def canonical_url
+    request.original_url
+  end
+
 end
