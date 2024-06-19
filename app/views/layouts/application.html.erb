@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>EsperenWebsite</title>
+  <title>Esperen | <%= content_for?(:title) ? yield(:title) : "Default Title" %></title>
+  <meta name="description" content="<%= content_for?(:meta_description) ? yield(:meta_description) : "Default Description" %>">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <!-- Bootstrap icons-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
@@ -57,7 +58,7 @@
             <a class="nav-link" href="/static_pages/contact">Infos & Contact</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/eshop/eshop_index">EShop</a>
+            <a class="nav-link" href="/eshop/eshop_index">Boutique</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -66,6 +67,7 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <% if user_signed_in? %>
               <li><%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, data: {turbo_method: :delete}, class: "dropdown-item" %></li>
+              <li><a class="dropdown-item" href="/users/edit">Modifier mon profil</a></li>    
               <% else %>
               <li><a class="dropdown-item" href="/users/sign_up">S'inscrire</a></li>
               <li><a class="dropdown-item" href="/users/sign_in">Se connecter</a></li>

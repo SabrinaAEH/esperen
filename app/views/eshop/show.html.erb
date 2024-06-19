@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <% content_for :title, "Produit" %>
+  <% content_for :meta_description, "Produit ESPEREN" %>
 </head>
 <body>
   <!-- Product section-->
@@ -51,7 +50,7 @@
               </div>
               <!-- Product actions-->
               <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="<%= eshop_item_path(related_item) %>">Voir en détails</a></div>
+                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="<%= eshop_item_path(related_item) %>">Voir en détail</a></div>
               </div>
             </div>
           </div>
@@ -62,4 +61,4 @@
   <!-- Bootstrap core JS-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>
+
