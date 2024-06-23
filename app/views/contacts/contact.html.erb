@@ -28,7 +28,7 @@
   <div class="row w-100">
     <div class="col-md-8 h-100">
       <div class="card h-100">
-<%= form_with(model: @contact, url: contacts_path, remote: true) do |form| %>  <div class="form-row">
+<%= form_with(model: @contact, url: contacts_path, html: { multipart: true }, local: true) do |form| %>
     <div class="col-md-6 mb-3">
       <label for="validationCustom01">Prénom</label>
       <input type="text" class="form-control" id="validationCustom01" name="first_name" placeholder="Entrez votre prénom" required>
