@@ -1,4 +1,6 @@
 class ContactMailer < ApplicationMailer
+  default from: ENV['MAILJET_DEFAULT_FROM']
+
   def contact_email(params)
     @first_name = params[:first_name]
     @last_name = params[:last_name]
