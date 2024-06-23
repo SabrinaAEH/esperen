@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <% content_for :title, "Contact" %>
 <% content_for :meta_description, "Coordonnées ESPEREN" %>
+<html>
 <head>
   <!-- Inclusion des polices -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link href="https://db.onlinewebfonts.com/c/49ded67c36cc1c2fe20918442aa23902?family=Rondal+Regular" rel="stylesheet">
 
   <%= csrf_meta_tags %>
@@ -18,91 +19,66 @@
 
   <!-- Inclusion du fichier CSS personnalisé -->
   <%= stylesheet_link_tag 'custom_styles', 'data-turbo-track': 'reload' %>
-  
 </head>
 <body>
 <div class="container text-center mt-3">
   <h1>Nous contacter</h1>
 </div>
-<div class="container card-container">
-  <div class="row w-100">
-    <div class="col-md-8 h-100">
-      <div class="card h-100">
-<%= form_with(model: @contact, url: contacts_path, html: { multipart: true }, local: true) do |form| %>
-    <div class="col-md-6 mb-3">
-      <label for="validationCustom01">Prénom</label>
-      <input type="text" class="form-control" id="validationCustom01" name="first_name" placeholder="Entrez votre prénom" required>
-      <div class="valid-feedback">
-        Merci!
-      </div>
-      <div class="invalid-feedback">
-        Merci d'entrer votre prénom.
-      </div>
-    </div>
-    <div class="col-md-6 mb-3">
-      <label for="validationCustom02">Nom</label>
-      <input type="text" class="form-control" id="validationCustom02" name="last_name" placeholder="Entrez votre nom" required>
-      <div class="valid-feedback">
-        Merci!
-      </div>
-      <div class="invalid-feedback">
-        Merci d'entrer votre nom.
-      </div>
-    </div>
-    <div class="col-md-12 mb-3">
-      <label for="validationCustomEmail">Email</label>
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroupPrepend">@</span>
-        </div>
-        <input type="email" class="form-control" id="validationCustomEmail" name="email" placeholder="Entrez votre adresse email" aria-describedby="inputGroupPrepend" required>
-        <div class="invalid-feedback">
-          Merci d'entrer une adresse email valide.
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="container card-container mt-4">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card p-4">
+        <%= form_with(model: @contact, url: contacts_path, html: { multipart: true }, local: true) do |form| %>
+          <div class="mb-3">
+            <label for="first_name" class="form-label">Prénom</label>
+            <%= form.text_field :first_name, class: "form-control", id: "first_name", placeholder: "Entrez votre prénom", required: true %>
+            <div class="invalid-feedback">Merci d'entrer votre prénom.</div>
+          </div>
 
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">Pourquoi souhaitez-vous nous contacter?</label>
-    <select class="form-control" id="exampleFormControlSelect1" name="reason">
-      <option>Candidature</option>
-      <option>Demande d'informations</option>
-      <option>Demande de devis</option>
-    </select>
-  </div>
+          <div class="mb-3">
+            <label for="last_name" class="form-label">Nom</label>
+            <%= form.text_field :last_name, class: "form-control", id: "last_name", placeholder: "Entrez votre nom", required: true %>
+            <div class="invalid-feedback">Merci d'entrer votre nom.</div>
+          </div>
 
-  <div class="form-group">
-    <label for="exampleFormControlTextarea1">Entrez votre message ici:</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" name="message" rows="5"></textarea>
-  </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <div class="input-group">
+              <span class="input-group-text" id="inputGroupPrepend">@</span>
+              <%= form.email_field :email, class: "form-control", id: "email", placeholder: "Entrez votre adresse email", aria: { describedby: "inputGroupPrepend" }, required: true %>
+              <div class="invalid-feedback">Merci d'entrer une adresse email valide.</div>
+            </div>
+          </div>
 
-  <div class="form-group">
-    <label for="exampleFormControlFile1">Joindre un fichier:</label>
-    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="file">
-  </div>
+          <div class="mb-3">
+            <label for="reason" class="form-label">Pourquoi souhaitez-vous nous contacter?</label>
+            <%= form.select :reason, ['Candidature', 'Demande d\'informations', 'Demande de devis'], {}, class: "form-select", id: "reason" %>
+          </div>
 
-  <div class="form-group">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-      <label class="form-check-label" for="invalidCheck">
-        Agree to terms and conditions
-      </label>
-      <div class="invalid-feedback">
-        You must agree before submitting.
-      </div>
-    </div>
-  </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Entrez votre message ici:</label>
+            <%= form.text_area :message, class: "form-control", id: "message", rows: 5 %>
+          </div>
 
- <%= form.submit 'Envoi', class: 'btn btn-secondary', data: { disable_with: 'Envoi en cours...' } %>
-<% end %>
-</form>
+          <div class="mb-3">
+            <label for="file" class="form-label">Joindre un fichier:</label>
+            <%= form.file_field :file, class: "form-control-file", id: "file" %>
+          </div>
+
+          <div class="mb-3 form-check">
+            <%= form.check_box :terms, class: "form-check-input", id: "invalidCheck", required: true %>
+            <label class="form-check-label" for="invalidCheck">Agree to terms and conditions</label>
+            <div class="invalid-feedback">You must agree before submitting.</div>
+          </div>
+
+          <%= form.submit 'Envoi', class: 'btn btn-secondary', data: { disable_with: 'Envoi en cours...' } %>
+        <% end %>
       </div>
     </div>
 
-     <div class="col-md-4">
-      <div class="card h-100">
-        <%= image_tag 'photo_contact.png', class: 'card-img-top h-100', alt: 'Contact' %>
+    <div class="col-md-4">
+      <div class="card">
+        <%= image_tag 'photo_contact.png', class: 'card-img-top', alt: 'Contact' %>
       </div>
     </div>
   </div>
@@ -131,6 +107,5 @@
     }, false);
   })();
 </script>
-
 </body>
 </html>
