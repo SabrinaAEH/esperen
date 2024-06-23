@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   get 'static_pages/prestations', to: 'static_pages#prestations', as: 'static_pages_prestations'
   get 'static_pages/about', to: 'static_pages#about', as: 'static_pages_about'
   get 'static_pages/team', to: 'static_pages#team', as: 'static_pages_team'
-  get 'static_pages/contact', to: 'static_pages#contact', as: 'static_pages_contact'
   get 'eshop/eshop_index', to: 'eshop#eshop_index', as: 'eshop_index'
   get 'eshop/item/:id', to: 'eshop#show', as: 'eshop_item'
+  get 'contacts/contact', to: 'contacts#contact', as: 'contacts_contact'
 
   resources :items, only: [:show] do
     post 'add_to_cart', on: :member
@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   end
 
   resources :orders, only: [:create, :show]
+
+  resources :contacts
 
   scope '/checkout' do
     post 'create', to: 'checkout#create', as: 'checkout_create'

@@ -77,3 +77,7 @@ gem 'stripe'
 gem "dockerfile-rails", ">= 1.6", :group => :development
 
 gem "redis", "~> 5.2"
+
+gem "mailjet"
+
+gem 'letter_opener', group: :development

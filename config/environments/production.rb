@@ -75,7 +75,19 @@ Rails.application.configure do
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
+  # Configuration d'Action Mailer pour la production
+  config.action_mailer.default_url_options = { host: ENV['ESPEREN_DATABASE_HOST'] }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  address: 'in-v3.mailjet.com',
+  port: 587,
+  user_name: ENV['MAILJET_API_KEY'],
+  password: ENV['MAILJET_SECRET_KEY'],
+  authentication: 'plain',
+  enable_starttls_auto: true
+  }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
